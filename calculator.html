@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f5; /* Light grey background */
+        }
+
+        .calculator {
+            border: 1px solid #ddd; /* Light grey border */
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #fff; /* White calculator */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Soft shadow */
+        }
+
+        .display {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 15px; /* Increased padding */
+            font-size: 24px; /* Larger font */
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: right;
+            box-sizing: border-box;
+            background-color: #f8f8f8; /* Very light grey display */
+            color: #333; /* Darker text in display */
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        button {
+            padding: 18px; /* Increased padding */
+            font-size: 20px; /* Larger font */
+            border: none;
+            border-radius: 8px; /* More rounded buttons */
+            background-color: #e0e0e0; /* Light grey buttons */
+            color: #333; /* Dark grey text */
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s; /* Added transform */
+        }
+
+        button:hover {
+            background-color: #d0d0d0; /* Slightly darker grey */
+            transform: scale(1.05); /* Subtle scale on hover */
+        }
+
+        .operator {
+            background-color: #4db6ac; /* Teal operator buttons */
+            color: #fff; /* White text */
+        }
+
+        .operator:hover {
+            background-color: #42a59d; /* Darker teal */
+            transform: scale(1.05);
+        }
+
+        .equal {
+            background-color: #66bb6a; /* Green equals button */
+            color: #fff; /* White text */
+        }
+
+        .equal:hover {
+            background-color: #55a559; /* Darker green */
+            transform: scale(1.05);
+        }
+
+        .clear {
+            background-color: #ef5350; /* Red clear button */
+            color: #fff; /* White text */
+        }
+
+        .clear:hover {
+            background-color: #e53935; /* Darker red */
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculator">
+        <input type="text" id="display" class="display" readonly>
+        <div class="buttons">
+            <button onclick="appendToDisplay('7')">7</button>
+            <button onclick="appendToDisplay('8')">8</button>
+            <button onclick="appendToDisplay('9')">9</button>
+            <button class="operator" onclick="appendToDisplay('+')">+</button>
+
+            <button onclick="appendToDisplay('4')">4</button>
+            <button onclick="appendToDisplay('5')">5</button>
+            <button onclick="appendToDisplay('6')">6</button>
+            <button class="operator" onclick="appendToDisplay('-')">-</button>
+
+            <button onclick="appendToDisplay('1')">1</button>
+            <button onclick="appendToDisplay('2')">2</button>
+            <button onclick="appendToDisplay('3')">3</button>
+            <button class="operator" onclick="appendToDisplay('*')">*</button>
+
+            <button class="clear" onclick="clearDisplay()">C</button>
+            <button onclick="appendToDisplay('0')">0</button>
+            <button onclick="appendToDisplay('.')">.</button>
+            <button class="operator" onclick="appendToDisplay('/')">/</button>
+
+            <button class="equal" onclick="calculate()">=</button>
+        </div>
+    </div>
+
+    <script>
+        function appendToDisplay(value) {
+            document.getElementById('display').value += value;
+        }
+
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
+
+        function calculate() {
+            try {
+                const result = eval(document.getElementById('display').value);
+                document.getElementById('display').value = result;
+            } catch (error) {
+                document.getElementById('display').value = 'Error';
+            }
+        }
+    </script>
+
+</body>
+</html>
